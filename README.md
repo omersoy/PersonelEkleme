@@ -9,5 +9,5 @@ sisteme giriş yapan admin ve kullanıcı yeni personel ekleyebilir personle sil
 
 aynı personel sistemde varsa uyarı verir.
 
-Entity Framewor ile yapılmıştır
+C# Mssql ve Entity Framework ile yapılmıştır
 
