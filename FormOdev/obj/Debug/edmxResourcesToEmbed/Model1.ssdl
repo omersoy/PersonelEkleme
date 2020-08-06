@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="odevFormAppModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="odevFormAppModelStoreContainer">
+    <EntitySet Name="Employee" EntityType="odevFormAppModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeePermits" EntityType="odevFormAppModel.Store.EmployeePermits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoginUserSet" EntityType="odevFormAppModel.Store.LoginUserSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_EP_Employee" Association="odevFormAppModel.Store.FK_EP_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeePermits" EntitySet="EmployeePermits" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TC" Type="bigint" Nullable="true" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Surname" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="BDate" Type="datetime" Nullable="true" />
+    <Property Name="WDate" Type="datetime" Nullable="true" />
+    <Property Name="KanGrubu" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="NetMaas" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="FYolu" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="WCikmaDate" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="EmployeePermits">
+    <Key>
+      <PropertyRef Name="PermitID" />
+    </Key>
+    <Property Name="PermitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="true" />
+    <Property Name="PermitsLeft" Type="int" Nullable="true" />
+    <Property Name="SpecialPermitCount" Type="int" Nullable="true" />
+    <Property Name="AnnualPermitCount" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="LoginUserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EP_Employee">
+    <End Role="Employee" Type="odevFormAppModel.Store.Employee" Multiplicity="0..1" />
+    <End Role="EmployeePermits" Type="odevFormAppModel.Store.EmployeePermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeePermits">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

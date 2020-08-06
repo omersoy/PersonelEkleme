@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="odevFormAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TC" Type="Int64" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BDate" Type="DateTime" Precision="0" />
+    <Property Name="WDate" Type="DateTime" Precision="3" />
+    <Property Name="KanGrubu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NetMaas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FYolu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="WCikmaDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="EmployeePermits" Relationship="Self.FK_EP_Employee" FromRole="Employee" ToRole="EmployeePermits" />
+  </EntityType>
+  <EntityType Name="EmployeePermits">
+    <Key>
+      <PropertyRef Name="PermitID" />
+    </Key>
+    <Property Name="PermitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="PermitsLeft" Type="Int32" />
+    <Property Name="SpecialPermitCount" Type="Int32" />
+    <Property Name="AnnualPermitCount" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_EP_Employee" FromRole="EmployeePermits" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_EP_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="EmployeePermits" Type="Self.EmployeePermits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="EmployeePermits">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="odevFormAppEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="EmployeePermits" EntityType="Self.EmployeePermits" />
+    <AssociationSet Name="FK_EP_Employee" Association="Self.FK_EP_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeePermits" EntitySet="EmployeePermits" />
+    </AssociationSet>
+    <EntitySet Name="LoginUserSet" EntityType="odevFormAppModel.LoginUser" />
+  </EntityContainer>
+  <EntityType Name="LoginUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

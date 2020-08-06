@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="odevFormAppModelStoreContainer" CdmEntityContainer="odevFormAppEntities1">
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="IsTypeOf(odevFormAppModel.Employee)">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="TC" ColumnName="TC" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+          <ScalarProperty Name="WDate" ColumnName="WDate" />
+          <ScalarProperty Name="KanGrubu" ColumnName="KanGrubu" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NetMaas" ColumnName="NetMaas" />
+          <ScalarProperty Name="FYolu" ColumnName="FYolu" />
+          <ScalarProperty Name="WCikmaDate" ColumnName="WCikmaDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePermits">
+      <EntityTypeMapping TypeName="IsTypeOf(odevFormAppModel.EmployeePermits)">
+        <MappingFragment StoreEntitySet="EmployeePermits">
+          <ScalarProperty Name="PermitID" ColumnName="PermitID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="PermitsLeft" ColumnName="PermitsLeft" />
+          <ScalarProperty Name="SpecialPermitCount" ColumnName="SpecialPermitCount" />
+          <ScalarProperty Name="AnnualPermitCount" ColumnName="AnnualPermitCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginUserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(odevFormAppModel.LoginUser)">
+        <MappingFragment StoreEntitySet="LoginUserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
